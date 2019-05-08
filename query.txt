@@ -1,0 +1,73 @@
+select orgn_name from organization where orgn_business='software';
+select orgn_name from organization where orgn_name  like 'S%' or orgn_name like 'B%';
+select  DISTINCT divn_id,divn_name,orgn_name,orgn_business from division div,organization org where org.orgn_id=div.orgn_id and orgn_business='software'; 
+
+select distinct  divn_id ,orgn_name,orgn_contact from organization org,division div where  org.orgn_id=div.orgn_id and orgn_contact='null'
+
+select div.divn_name ,count(*) as "tot" from employee  emp,division div,branch b  where emp.bran_id=b.bran_id and  b.divn_id=div.divn_id   group by div.divn_name;
+
+select b.bran_name from branch b,organization o,division d  where b.divn_id=d.divn_id and d.orgn_id=o.orgn_id order by b.bran_name asc
+
+select emp_fname  from employee e, branch b where b.bran_id=e.bran_id
+
+select distinct bran_name  from division d, branch b where b.divn_id=d.divn_id
+
+select distinct o.orgn_name, d.divn_name ,b.bran_name,e.emp_fname from organization o ,employee e ,division d,branch b where o.orgn_id=d.orgn_id and d.divn_id=b.divn_id and b.bran_id=e.bran_id  order by o.orgn_name,d.divn_name ,b.bran_name,e.emp_fname  desc;
+
+select orgn_name from organization where orgn_id=3 or orgn_id=4 or orgn_id=5;
+select divn_name,divn_id from division where mod(divn_id,2 )! = 0;
+
+select distinct e.emp_fname,d.divn_id from employee e,division d ,branch b where  e.bran_id=b.bran_id and b.divn_id=d.divn_id and e.bran_id=b.bran_id and d.divn_id IN (11,13,17);
+select divn_name from division where divn_id NOT IN(select divn_id from branch);
+
+select divn_name from division  where divn_id not in (select divn_id from branch)
+select emp_fname from employee where emp_fname like 'F%' OR emp_fname like 'R%' ;
+
+select bran_name, count(*) as tot from employee e,branch b where e.bran_id=b.bran_id group by bran_name;
+
+select emp_fname,orgn_name from employee e,organization o,division d ,branch b where o.orgn_id=d.orgn_id AND b.divn_id=d.divn_id AND e.bran_id = b.bran_id AND orgn_name='Microsoft Corporation';
+
+select emp_fname,emp_join_date from employee where emp_join_date like '10-SEP-%';
+
+
+
+
+select  e.emp_fname ,b.bran_name from employee e,branch b where e.bran_id=b.bran_id and b.bran_name like  'A%' OR  e.emp_fname like 'A%' ;
+
+
+select count(*) as tot ,b.bran_name from employee e,branch b where e.bran_id=b.bran_id and bran_name='Dehradun' group by b.bran_name;
+
+
+
+
+select emp_fname from employee where emp_fname like 'A%' or emp_fname like 'E%' or emp_fname like 'I%' or emp_fname like 'O%' or emp_fname like 'U%'
+
+alter table employee modify (emp_lname varchar(60), emp_fname varchar(60));
+
+
+select length(emp_fname) as len,emp_fname from employee; 
+
+select b.bran_name ,d.divn_name from branch b, division d where b.divn_id=d.divn_id and d.divn_name='Planning';
+
+select distinct (d.divn_name),e.emp_fname from division d,employee e ,branch b where  e.bran_id=b.bran_id and b.divn_id=d.divn_id and d.divn_id not in (e.emp_id);
+
+select e.emp_fname ,orgn_name from employee e, organization o,division d,branch b  where d.orgn_id=o.orgn_id and b.divn_id=d.divn_id and e.bran_id=b.bran_id and orgn_name='Delta Corporation';
+
+select distinct( e.emp_fname),b.bran_name from employee e,branch b where b.bran_id=e.bran_id and e.emp_fname like 'A%' or  b.bran_name like 'B%';
+
+select e.emp_fname,d.divn_name  from division d,employee e,branch b where d.divn_id=b.divn_id and e.bran_id =b.bran_id order by  d.divn_name asc;
+
+select count(*) totemp,bran_name,divn_name from division d,employee e,branch b where d.divn_id=b.divn_id and e.bran_id =b.bran_id group by d.divn_name,b.bran_name;
+
+select divn_name,divn_id,
+ case divn_id
+when 18 then 'Baroda'
+when 20 then 'Kolkatta'
+when 33 then 'New Delhi'
+else 'unknown' end divn_id
+from division where divn_id in (18,20,33);
+
+select distinct (d.doct_name),h.hosp_city ,d.doct_city from doctor d,hospital h  where h.hosp_city=d.doct_city
+
+select h.hosp_name from hospital h,doctor d ,visit v where v.hosp_id=h.hosp_id and v.doct_id =d.doct_id and d.doct_name='Dr.joshi';
+
